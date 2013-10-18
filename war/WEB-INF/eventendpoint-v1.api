@@ -1,0 +1,247 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://myapp.appspot.com/_ah/api",
+  "name" : "eventendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://myapp.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "moodstream.com",
+  "ownerName" : "moodstream.com",
+  "packagePath" : "model",
+  "methods" : {
+    "eventendpoint.removeEvent" : {
+      "path" : "event/{id}",
+      "httpMethod" : "DELETE",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.EventEndpoint.removeEvent",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "eventendpoint.insertEvent" : {
+      "path" : "event",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.EventEndpoint.insertEvent",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "eventendpoint.getEvent" : {
+      "path" : "event/{id}",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.EventEndpoint.getEvent",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "eventendpoint.listEvent" : {
+      "path" : "event",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.EventEndpoint.listEvent",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "eventendpoint.updateEvent" : {
+      "path" : "event",
+      "httpMethod" : "PUT",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.EventEndpoint.updateEvent",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Event" : {
+        "id" : "Event",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "eventName" : {
+            "type" : "string"
+          },
+          "location" : {
+            "$ref" : "GeoPt"
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "creator" : {
+            "type" : "string"
+          },
+          "invitees" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "Key" : {
+        "id" : "Key",
+        "type" : "object",
+        "properties" : {
+          "kind" : {
+            "type" : "string"
+          },
+          "appId" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "parent" : {
+            "$ref" : "Key"
+          },
+          "namespace" : {
+            "type" : "string"
+          },
+          "complete" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "GeoPt" : {
+        "id" : "GeoPt",
+        "type" : "object",
+        "properties" : {
+          "latitude" : {
+            "type" : "number",
+            "format" : "float"
+          },
+          "longitude" : {
+            "type" : "number",
+            "format" : "float"
+          }
+        }
+      },
+      "CollectionResponse_Event" : {
+        "id" : "CollectionResponse_Event",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Event"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.moodstream.model.EventEndpoint.removeEvent" : {
+      },
+      "com.moodstream.model.EventEndpoint.insertEvent" : {
+        "request" : {
+          "$ref" : "Event"
+        },
+        "response" : {
+          "$ref" : "Event"
+        }
+      },
+      "com.moodstream.model.EventEndpoint.getEvent" : {
+        "response" : {
+          "$ref" : "Event"
+        }
+      },
+      "com.moodstream.model.EventEndpoint.listEvent" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Event"
+        }
+      },
+      "com.moodstream.model.EventEndpoint.updateEvent" : {
+        "request" : {
+          "$ref" : "Event"
+        },
+        "response" : {
+          "$ref" : "Event"
+        }
+      }
+    }
+  }
+}

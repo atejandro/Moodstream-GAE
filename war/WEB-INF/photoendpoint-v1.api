@@ -1,0 +1,197 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://myapp.appspot.com/_ah/api",
+  "name" : "photoendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://myapp.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "moodstream.com",
+  "ownerName" : "moodstream.com",
+  "packagePath" : "model",
+  "methods" : {
+    "photoendpoint.removePhoto" : {
+      "path" : "photo/{id}",
+      "httpMethod" : "DELETE",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.PhotoEndpoint.removePhoto",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "photoendpoint.listPhoto" : {
+      "path" : "photo",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.PhotoEndpoint.listPhoto",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "photoendpoint.insertPhoto" : {
+      "path" : "photo",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.PhotoEndpoint.insertPhoto",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "photoendpoint.getPhoto" : {
+      "path" : "photo/{id}",
+      "httpMethod" : "GET",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.PhotoEndpoint.getPhoto",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "photoendpoint.updatePhoto" : {
+      "path" : "photo",
+      "httpMethod" : "PUT",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.PhotoEndpoint.updatePhoto",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "CollectionResponse_Photo" : {
+        "id" : "CollectionResponse_Photo",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Photo"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Photo" : {
+        "id" : "Photo",
+        "type" : "object",
+        "properties" : {
+          "blobPath" : {
+            "type" : "string"
+          },
+          "ownerNickname" : {
+            "type" : "string"
+          },
+          "eventId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "caption" : {
+            "type" : "string"
+          },
+          "uploadTime" : {
+            "type" : "string",
+            "format" : "int64"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.moodstream.model.PhotoEndpoint.removePhoto" : {
+      },
+      "com.moodstream.model.PhotoEndpoint.listPhoto" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Photo"
+        }
+      },
+      "com.moodstream.model.PhotoEndpoint.insertPhoto" : {
+        "request" : {
+          "$ref" : "Photo"
+        },
+        "response" : {
+          "$ref" : "Photo"
+        }
+      },
+      "com.moodstream.model.PhotoEndpoint.getPhoto" : {
+        "response" : {
+          "$ref" : "Photo"
+        }
+      },
+      "com.moodstream.model.PhotoEndpoint.updatePhoto" : {
+        "request" : {
+          "$ref" : "Photo"
+        },
+        "response" : {
+          "$ref" : "Photo"
+        }
+      }
+    }
+  }
+}
