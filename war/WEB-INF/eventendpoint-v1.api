@@ -47,21 +47,6 @@
         "body" : "empty"
       }
     },
-    "eventendpoint.insertEvent" : {
-      "path" : "event",
-      "httpMethod" : "POST",
-      "scopes" : [ ],
-      "audiences" : [ ],
-      "clientIds" : [ ],
-      "rosyMethod" : "com.moodstream.model.EventEndpoint.insertEvent",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
     "eventendpoint.getEvent" : {
       "path" : "event/{id}",
       "httpMethod" : "GET",
@@ -77,6 +62,21 @@
           }
         },
         "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "eventendpoint.insertEvent" : {
+      "path" : "event",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.EventEndpoint.insertEvent",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -216,15 +216,15 @@
     "methods" : {
       "com.moodstream.model.EventEndpoint.removeEvent" : {
       },
-      "com.moodstream.model.EventEndpoint.insertEvent" : {
-        "request" : {
-          "$ref" : "Event"
-        },
+      "com.moodstream.model.EventEndpoint.getEvent" : {
         "response" : {
           "$ref" : "Event"
         }
       },
-      "com.moodstream.model.EventEndpoint.getEvent" : {
+      "com.moodstream.model.EventEndpoint.insertEvent" : {
+        "request" : {
+          "$ref" : "Event"
+        },
         "response" : {
           "$ref" : "Event"
         }
