@@ -71,6 +71,10 @@
       "rosyMethod" : "com.moodstream.model.PhotoEndpoint.listPhoto",
       "request" : {
         "parameters" : {
+          "eventId" : {
+            "type" : "int64",
+            "required" : false
+          },
           "cursor" : {
             "type" : "string",
             "required" : false

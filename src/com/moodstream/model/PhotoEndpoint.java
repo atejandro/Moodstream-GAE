@@ -31,16 +31,19 @@ public class PhotoEndpoint {
 	@SuppressWarnings({ "unchecked", "unused" })
 	@ApiMethod(name = "listPhoto")
 	public CollectionResponse<Photo> listPhoto(
+			@Nullable @Named("eventId")Long eventId,
 			@Nullable @Named("cursor") String cursorString,
 			@Nullable @Named("limit") Integer limit) {
 
 		EntityManager mgr = null;
 		Cursor cursor = null;
 		List<Photo> execute = null;
-
 		try {
 			mgr = getEntityManager();
-			Query query = mgr.createQuery("select from Photo as Photo");
+			String querystr="select p from Photo p where p.eventId = :eventId";
+			//"select from Photo as Photo"
+			Query query = mgr.createQuery(querystr,Photo.class);
+			query.setParameter("eventId", eventId);
 			if (cursorString != null && cursorString != "") {
 				cursor = Cursor.fromWebSafeString(cursorString);
 				query.setHint(JPACursorHelper.CURSOR_HINT, cursor);
