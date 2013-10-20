@@ -1,6 +1,13 @@
 package com.moodstream.model;
 
-import com.moodstream.util.EMF;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nullable;
+import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
@@ -8,15 +15,7 @@ import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
-
-import java.util.List;
-
-import javax.annotation.Nullable;
-import javax.inject.Named;
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import com.moodstream.util.EMF;
 
 @Api(name = "eventendpoint", namespace = @ApiNamespace(ownerDomain = "moodstream.com", ownerName = "moodstream.com", packagePath = "model"))
 public class EventEndpoint {
@@ -28,43 +27,69 @@ public class EventEndpoint {
 	 * @return A CollectionResponse class containing the list of all entities
 	 * persisted and a cursor to the next page.
 	 */
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings({ "unchecked", "unused", "rawtypes" })
 	@ApiMethod(name = "listEvent")
 	public CollectionResponse<Event> listEvent(
+			@Nullable @Named("nickname") String nickname,
 			@Nullable @Named("cursor") String cursorString,
 			@Nullable @Named("limit") Integer limit) {
 
 		EntityManager mgr = null;
 		Cursor cursor = null;
-		List<Event> execute = null;
+		List<Event> execute_creator = null;
+		List<Event> execute_invitees=null;
+		
+		List<Event> execute_merged=null;
 
 		try {
 			mgr = getEntityManager();
-			Query query = mgr.createQuery("select from Event as Event");
+			
+			String querystr_creator="select e from Event e where e.creator= :nickname";
+			String querystr_invitees="select e from Event e where e.invitees.contains(:nickname)";
+			
+			Query query_creator = mgr.createQuery(querystr_creator,Event.class);
+			query_creator.setParameter("nickname", nickname);
+			
+			Query query_invitees = mgr.createQuery(querystr_invitees,Event.class);
+			query_invitees.setParameter("nickname", nickname);
+			//query.setParameter("nickname2", nickname);
 			if (cursorString != null && cursorString != "") {
 				cursor = Cursor.fromWebSafeString(cursorString);
-				query.setHint(JPACursorHelper.CURSOR_HINT, cursor);
+				query_creator.setHint(JPACursorHelper.CURSOR_HINT, cursor);
+				query_invitees.setHint(JPACursorHelper.CURSOR_HINT, cursor);
 			}
 
 			if (limit != null) {
-				query.setFirstResult(0);
-				query.setMaxResults(limit);
+				query_creator.setFirstResult(0);
+				query_creator.setMaxResults(limit);
+				
+				query_invitees.setFirstResult(0);
+				query_invitees.setMaxResults(limit);
 			}
 
-			execute = (List<Event>) query.getResultList();
-			cursor = JPACursorHelper.getCursor(execute);
+			execute_creator = (List<Event>) query_creator.getResultList();
+			execute_invitees = (List<Event>) query_invitees.getResultList();
+			
+			cursor = JPACursorHelper.getCursor(execute_creator);
 			if (cursor != null)
 				cursorString = cursor.toWebSafeString();
 
 			// Tight loop for fetching all entities from datastore and accomodate
 			// for lazy fetch.
-			for (Event obj : execute)
+			for (Event obj : execute_creator)
 				;
+			
+			for (Event obj : execute_invitees)
+				;
+			
+			execute_merged=new ArrayList(execute_creator);
+			execute_merged.addAll(execute_invitees);
+			
 		} finally {
 			mgr.close();
 		}
 
-		return CollectionResponse.<Event> builder().setItems(execute)
+		return CollectionResponse.<Event> builder().setItems(execute_merged)
 				.setNextPageToken(cursorString).build();
 	}
 
@@ -85,26 +110,6 @@ public class EventEndpoint {
 		}
 		return event;
 	}
-	
-	
-	
-	/*
-	@ApiMethod(name = "listEventById")
-	public List<Event> listEventById(@Named("id") String id) {
-		
-		String myQuery="SELECT e FROM Event e WHERE e.creator"
-		
-		EntityManager mgr = getEntityManager();
-		
-		try {
-			event = mgr.find(Event.class, id);
-		} finally {
-			mgr.close();
-		}
-		return event;
-	}
-
-	*/
 	
 	
 	
