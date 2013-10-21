@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/GltVJuY9Vn_XJEibGDpSajd9hFY\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/OgWLvnhiv2b02HI4sDo-fhBLhsE\"",
  "discoveryVersion": "v1",
  "id": "userendpoint:v1",
  "name": "userendpoint",
@@ -104,6 +104,23 @@
   }
  },
  "methods": {
+  "userendpoint.addFriend": {
+   "id": "userendpoint.addFriend",
+   "parameters": {
+    "friendId": {
+     "type": "string",
+     "required": true
+    },
+    "userId": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "userId",
+    "friendId"
+   ]
+  },
   "userendpoint.getUser": {
    "id": "userendpoint.getUser",
    "allowGet": true,

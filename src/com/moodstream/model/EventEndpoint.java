@@ -171,6 +171,30 @@ public class EventEndpoint {
 			mgr.close();
 		}
 	}
+	
+	
+	@ApiMethod(name="inviteFriend")
+	public void inviteFriend(@Named("id") Long id,@Named("invitee")String invitee)
+	{
+		EntityManager mgr=getEntityManager();
+		
+		try {
+			Event event=mgr.find(Event.class, id);
+			System.out.println("Event name: "+event.getEventName());
+			List<String>invitees;
+			if((invitees=event.getInvitees())==null)
+				invitees=new ArrayList<String>();
+			
+			invitees.add(invitee);
+			event.setInvitees(invitees);
+			
+			mgr.persist(event);		
+		} finally{
+			mgr.close();
+		}
+	}
+	
+	
 
 	private boolean containsEvent(Event event) {
 		EntityManager mgr = getEntityManager();

@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/GltVJuY9Vn_XJEibGDpSajd9hFY\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/OgWLvnhiv2b02HI4sDo-fhBLhsE\"",
  "discoveryVersion": "v1",
  "id": "userendpoint:v1",
  "name": "userendpoint",
@@ -106,6 +106,27 @@
   }
  },
  "methods": {
+  "addFriend": {
+   "id": "userendpoint.addFriend",
+   "path": "addFriend/{userId}/{friendId}",
+   "httpMethod": "POST",
+   "parameters": {
+    "friendId": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    },
+    "userId": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "userId",
+    "friendId"
+   ]
+  },
   "getUser": {
    "id": "userendpoint.getUser",
    "path": "user/{id}",

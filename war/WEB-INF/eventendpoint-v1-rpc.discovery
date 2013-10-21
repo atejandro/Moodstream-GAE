@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/1e_i9ljmQCNdEZWo6fpPmtwNBdI\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/idIo5sTb49tKyWApHuo72drhCic\"",
  "discoveryVersion": "v1",
  "id": "eventendpoint:v1",
  "name": "eventendpoint",
@@ -183,6 +183,24 @@
    "returns": {
     "$ref": "Event"
    }
+  },
+  "eventendpoint.inviteFriend": {
+   "id": "eventendpoint.inviteFriend",
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    },
+    "invitee": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "id",
+    "invitee"
+   ]
   },
   "eventendpoint.listEvent": {
    "id": "eventendpoint.listEvent",

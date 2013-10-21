@@ -1,5 +1,6 @@
 package com.moodstream.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -141,6 +142,50 @@ public class UserEndpoint {
 			mgr.close();
 		}
 	}
+	
+	/**
+	 * This method mutually adds to a user a friend
+	 * 
+	 * @param userId
+	 * @param friendId
+	 */
+	@ApiMethod(name="addFriend")
+	public void addFriend(@Named("userId")String userId,@Named("friendId")String friendId)
+	{
+		EntityManager mgr=getEntityManager();
+		
+		try {
+			User user=mgr.find(User.class, userId);
+			User friend=mgr.find(User.class,friendId);
+			
+			List<String> userFriends=appendFriend(user,friendId);
+			List<String> friendFriends=appendFriend(friend, userId);
+			
+			user.setFriends(userFriends);
+			friend.setFriends(friendFriends);
+			
+			mgr.persist(user);
+			mgr.persist(friend);	
+		} finally {
+			mgr.close();
+		}
+	}
+	
+	private List<String> appendFriend(User u,String friendId)
+	{
+		List<String> userFriends=new ArrayList<String>();
+		
+		if(u.getFriends()!=null)
+		{
+			userFriends=u.getFriends();
+			userFriends.add(friendId);
+		}
+		else
+			userFriends.add(friendId);
+		
+		return userFriends;
+	}
+	
 
 	private boolean containsUser(User user) {
 		EntityManager mgr = getEntityManager();

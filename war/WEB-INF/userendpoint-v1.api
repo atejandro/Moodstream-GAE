@@ -57,6 +57,30 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "userendpoint.addFriend" : {
+      "path" : "addFriend/{userId}/{friendId}",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.UserEndpoint.addFriend",
+      "request" : {
+        "parameters" : {
+          "userId" : {
+            "type" : "string",
+            "required" : true
+          },
+          "friendId" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
     "userendpoint.listUser" : {
       "path" : "user",
       "httpMethod" : "GET",
@@ -180,6 +204,8 @@
         "response" : {
           "$ref" : "User"
         }
+      },
+      "com.moodstream.model.UserEndpoint.addFriend" : {
       },
       "com.moodstream.model.UserEndpoint.listUser" : {
         "response" : {
