@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/jplSX4qTn3e6f2KPH2tfGAT9RhM\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/IByNN6DwGhZT64tzZfA3_vf-e9E\"",
  "discoveryVersion": "v1",
  "id": "photoendpoint:v1",
  "name": "photoendpoint",
@@ -14,8 +14,8 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rpc",
- "rootUrl": "https://myapp.appspot.com/_ah/api/",
- "rpcUrl": "https://myapp.appspot.com/_ah/api/rpc",
+ "rootUrl": "https://moodstreamers.appspot.com/_ah/api/",
+ "rpcUrl": "https://moodstreamers.appspot.com/_ah/api/rpc",
  "rpcPath": "/_ah/api/rpc",
  "parameters": {
   "alt": {

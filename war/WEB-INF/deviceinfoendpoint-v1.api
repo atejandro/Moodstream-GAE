@@ -1,12 +1,12 @@
 {
   "extends" : "thirdParty.api",
   "abstract" : false,
-  "root" : "https://myapp.appspot.com/_ah/api",
+  "root" : "https://moodstreamers.appspot.com/_ah/api",
   "name" : "deviceinfoendpoint",
   "version" : "v1",
   "defaultVersion" : false,
   "adapter" : {
-    "bns" : "https://myapp.appspot.com/_ah/spi",
+    "bns" : "https://moodstreamers.appspot.com/_ah/spi",
     "deadline" : 10.0,
     "type" : "lily"
   },
@@ -26,6 +26,21 @@
   "ownerDomain" : "moodstream.com",
   "ownerName" : "moodstream.com",
   "methods" : {
+    "deviceinfoendpoint.insertDeviceInfo" : {
+      "path" : "deviceinfo",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.DeviceInfoEndpoint.insertDeviceInfo",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "deviceinfoendpoint.removeDeviceInfo" : {
       "path" : "deviceinfo/{id}",
       "httpMethod" : "DELETE",
@@ -44,21 +59,6 @@
       },
       "response" : {
         "body" : "empty"
-      }
-    },
-    "deviceinfoendpoint.insertDeviceInfo" : {
-      "path" : "deviceinfo",
-      "httpMethod" : "POST",
-      "scopes" : [ ],
-      "audiences" : [ ],
-      "clientIds" : [ ],
-      "rosyMethod" : "com.moodstream.model.DeviceInfoEndpoint.insertDeviceInfo",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
       }
     },
     "deviceinfoendpoint.getDeviceInfo" : {
@@ -156,8 +156,6 @@
       }
     },
     "methods" : {
-      "com.moodstream.model.DeviceInfoEndpoint.removeDeviceInfo" : {
-      },
       "com.moodstream.model.DeviceInfoEndpoint.insertDeviceInfo" : {
         "request" : {
           "$ref" : "DeviceInfo"
@@ -165,6 +163,8 @@
         "response" : {
           "$ref" : "DeviceInfo"
         }
+      },
+      "com.moodstream.model.DeviceInfoEndpoint.removeDeviceInfo" : {
       },
       "com.moodstream.model.DeviceInfoEndpoint.getDeviceInfo" : {
         "response" : {

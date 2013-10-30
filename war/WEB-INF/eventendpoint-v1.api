@@ -1,12 +1,12 @@
 {
   "extends" : "thirdParty.api",
   "abstract" : false,
-  "root" : "https://myapp.appspot.com/_ah/api",
+  "root" : "https://moodstreamers.appspot.com/_ah/api",
   "name" : "eventendpoint",
   "version" : "v1",
   "defaultVersion" : false,
   "adapter" : {
-    "bns" : "https://myapp.appspot.com/_ah/spi",
+    "bns" : "https://moodstreamers.appspot.com/_ah/spi",
     "deadline" : 10.0,
     "type" : "lily"
   },
@@ -47,6 +47,21 @@
         "body" : "empty"
       }
     },
+    "eventendpoint.insertEvent" : {
+      "path" : "event",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.EventEndpoint.insertEvent",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "eventendpoint.getEvent" : {
       "path" : "event/{id}",
       "httpMethod" : "GET",
@@ -62,21 +77,6 @@
           }
         },
         "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "eventendpoint.insertEvent" : {
-      "path" : "event",
-      "httpMethod" : "POST",
-      "scopes" : [ ],
-      "audiences" : [ ],
-      "clientIds" : [ ],
-      "rosyMethod" : "com.moodstream.model.EventEndpoint.insertEvent",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -203,11 +203,11 @@
           "parent" : {
             "$ref" : "Key"
           },
-          "complete" : {
-            "type" : "boolean"
-          },
           "namespace" : {
             "type" : "string"
+          },
+          "complete" : {
+            "type" : "boolean"
           }
         }
       },
@@ -244,15 +244,15 @@
     "methods" : {
       "com.moodstream.model.EventEndpoint.removeEvent" : {
       },
-      "com.moodstream.model.EventEndpoint.getEvent" : {
-        "response" : {
-          "$ref" : "Event"
-        }
-      },
       "com.moodstream.model.EventEndpoint.insertEvent" : {
         "request" : {
           "$ref" : "Event"
         },
+        "response" : {
+          "$ref" : "Event"
+        }
+      },
+      "com.moodstream.model.EventEndpoint.getEvent" : {
         "response" : {
           "$ref" : "Event"
         }

@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/Hv9TAu7z-br8Jo4SOq6U3Da_scE\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/4edAvefcBnLx9xmzMii1Os3CMK0\"",
  "discoveryVersion": "v1",
  "id": "messageEndpoint:v1",
  "name": "messageEndpoint",
@@ -13,9 +13,9 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://myapp.appspot.com/_ah/api/messageEndpoint/v1/",
+ "baseUrl": "https://moodstreamers.appspot.com/_ah/api/messageEndpoint/v1/",
  "basePath": "/_ah/api/messageEndpoint/v1/",
- "rootUrl": "https://myapp.appspot.com/_ah/api/",
+ "rootUrl": "https://moodstreamers.appspot.com/_ah/api/",
  "servicePath": "messageEndpoint/v1/",
  "batchPath": "batch",
  "parameters": {

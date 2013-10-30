@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/idIo5sTb49tKyWApHuo72drhCic\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/zbdCvyvu2MVFqU4w1RG2meTY5Gg\"",
  "discoveryVersion": "v1",
  "id": "eventendpoint:v1",
  "name": "eventendpoint",
@@ -14,8 +14,8 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rpc",
- "rootUrl": "https://myapp.appspot.com/_ah/api/",
- "rpcUrl": "https://myapp.appspot.com/_ah/api/rpc",
+ "rootUrl": "https://moodstreamers.appspot.com/_ah/api/",
+ "rpcUrl": "https://moodstreamers.appspot.com/_ah/api/rpc",
  "rpcPath": "/_ah/api/rpc",
  "parameters": {
   "alt": {

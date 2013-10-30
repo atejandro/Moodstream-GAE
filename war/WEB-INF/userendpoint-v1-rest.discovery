@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/OgWLvnhiv2b02HI4sDo-fhBLhsE\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/0S-IBNKnUgQwMYRML4kRXtBn9eg\"",
  "discoveryVersion": "v1",
  "id": "userendpoint:v1",
  "name": "userendpoint",
@@ -14,9 +14,9 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://myapp.appspot.com/_ah/api/userendpoint/v1/",
+ "baseUrl": "https://moodstreamers.appspot.com/_ah/api/userendpoint/v1/",
  "basePath": "/_ah/api/userendpoint/v1/",
- "rootUrl": "https://myapp.appspot.com/_ah/api/",
+ "rootUrl": "https://moodstreamers.appspot.com/_ah/api/",
  "servicePath": "userendpoint/v1/",
  "batchPath": "batch",
  "parameters": {

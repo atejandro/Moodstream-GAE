@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/jplSX4qTn3e6f2KPH2tfGAT9RhM\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/IByNN6DwGhZT64tzZfA3_vf-e9E\"",
  "discoveryVersion": "v1",
  "id": "photoendpoint:v1",
  "name": "photoendpoint",
@@ -14,9 +14,9 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://myapp.appspot.com/_ah/api/photoendpoint/v1/",
+ "baseUrl": "https://moodstreamers.appspot.com/_ah/api/photoendpoint/v1/",
  "basePath": "/_ah/api/photoendpoint/v1/",
- "rootUrl": "https://myapp.appspot.com/_ah/api/",
+ "rootUrl": "https://moodstreamers.appspot.com/_ah/api/",
  "servicePath": "photoendpoint/v1/",
  "batchPath": "batch",
  "parameters": {

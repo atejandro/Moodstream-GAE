@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/idIo5sTb49tKyWApHuo72drhCic\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/zbdCvyvu2MVFqU4w1RG2meTY5Gg\"",
  "discoveryVersion": "v1",
  "id": "eventendpoint:v1",
  "name": "eventendpoint",
@@ -14,9 +14,9 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://myapp.appspot.com/_ah/api/eventendpoint/v1/",
+ "baseUrl": "https://moodstreamers.appspot.com/_ah/api/eventendpoint/v1/",
  "basePath": "/_ah/api/eventendpoint/v1/",
- "rootUrl": "https://myapp.appspot.com/_ah/api/",
+ "rootUrl": "https://moodstreamers.appspot.com/_ah/api/",
  "servicePath": "eventendpoint/v1/",
  "batchPath": "batch",
  "parameters": {
