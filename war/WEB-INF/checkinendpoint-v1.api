@@ -2,7 +2,7 @@
   "extends" : "thirdParty.api",
   "abstract" : false,
   "root" : "https://moodstreamers.appspot.com/_ah/api",
-  "name" : "eventendpoint",
+  "name" : "checkinendpoint",
   "version" : "v1",
   "defaultVersion" : false,
   "adapter" : {
@@ -27,13 +27,13 @@
   "ownerName" : "moodstream.com",
   "packagePath" : "model",
   "methods" : {
-    "eventendpoint.removeEvent" : {
-      "path" : "event/{id}",
+    "checkinendpoint.removeCheckin" : {
+      "path" : "checkin/{id}",
       "httpMethod" : "DELETE",
       "scopes" : [ ],
       "audiences" : [ ],
       "clientIds" : [ ],
-      "rosyMethod" : "com.moodstream.model.EventEndpoint.removeEvent",
+      "rosyMethod" : "com.moodstream.model.CheckinEndpoint.removeCheckin",
       "request" : {
         "parameters" : {
           "id" : {
@@ -47,13 +47,33 @@
         "body" : "empty"
       }
     },
-    "eventendpoint.insertEvent" : {
-      "path" : "event",
-      "httpMethod" : "POST",
+    "checkinendpoint.getCheckin" : {
+      "path" : "checkin/{id}",
+      "httpMethod" : "GET",
       "scopes" : [ ],
       "audiences" : [ ],
       "clientIds" : [ ],
-      "rosyMethod" : "com.moodstream.model.EventEndpoint.insertEvent",
+      "rosyMethod" : "com.moodstream.model.CheckinEndpoint.getCheckin",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "checkinendpoint.updateCheckin" : {
+      "path" : "checkin",
+      "httpMethod" : "PUT",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.CheckinEndpoint.updateCheckin",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -62,39 +82,30 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "eventendpoint.getEvent" : {
-      "path" : "event/{id}",
-      "httpMethod" : "GET",
+    "checkinendpoint.insertCheckin" : {
+      "path" : "checkin",
+      "httpMethod" : "POST",
       "scopes" : [ ],
       "audiences" : [ ],
       "clientIds" : [ ],
-      "rosyMethod" : "com.moodstream.model.EventEndpoint.getEvent",
+      "rosyMethod" : "com.moodstream.model.CheckinEndpoint.insertCheckin",
       "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "eventendpoint.listEvent" : {
-      "path" : "event",
+    "checkinendpoint.listCheckin" : {
+      "path" : "checkin",
       "httpMethod" : "GET",
       "scopes" : [ ],
       "audiences" : [ ],
       "clientIds" : [ ],
-      "rosyMethod" : "com.moodstream.model.EventEndpoint.listEvent",
+      "rosyMethod" : "com.moodstream.model.CheckinEndpoint.listCheckin",
       "request" : {
         "parameters" : {
-          "nickname" : {
-            "type" : "string",
-            "required" : false
-          },
           "cursor" : {
             "type" : "string",
             "required" : false
@@ -109,77 +120,27 @@
       "response" : {
         "body" : "autoTemplate(backendResponse)"
       }
-    },
-    "eventendpoint.updateEvent" : {
-      "path" : "event",
-      "httpMethod" : "PUT",
-      "scopes" : [ ],
-      "audiences" : [ ],
-      "clientIds" : [ ],
-      "rosyMethod" : "com.moodstream.model.EventEndpoint.updateEvent",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "eventendpoint.inviteFriend" : {
-      "path" : "inviteFriend/{id}/{invitee}",
-      "httpMethod" : "POST",
-      "scopes" : [ ],
-      "audiences" : [ ],
-      "clientIds" : [ ],
-      "rosyMethod" : "com.moodstream.model.EventEndpoint.inviteFriend",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          },
-          "invitee" : {
-            "type" : "string",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
     }
   },
   "descriptor" : {
     "schemas" : {
-      "Event" : {
-        "id" : "Event",
+      "Checkin" : {
+        "id" : "Checkin",
         "type" : "object",
         "properties" : {
           "key" : {
             "$ref" : "Key"
           },
-          "eventName" : {
+          "userId" : {
             "type" : "string"
           },
-          "location" : {
-            "$ref" : "GeoPt"
-          },
-          "date" : {
+          "eventId" : {
             "type" : "string",
-            "format" : "date-time"
+            "format" : "int64"
           },
-          "description" : {
-            "type" : "string"
-          },
-          "creator" : {
-            "type" : "string"
-          },
-          "invitees" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
+          "timestamp" : {
+            "type" : "string",
+            "format" : "int64"
           }
         }
       },
@@ -211,28 +172,14 @@
           }
         }
       },
-      "GeoPt" : {
-        "id" : "GeoPt",
-        "type" : "object",
-        "properties" : {
-          "latitude" : {
-            "type" : "number",
-            "format" : "float"
-          },
-          "longitude" : {
-            "type" : "number",
-            "format" : "float"
-          }
-        }
-      },
-      "CollectionResponse_Event" : {
-        "id" : "CollectionResponse_Event",
+      "CollectionResponse_Checkin" : {
+        "id" : "CollectionResponse_Checkin",
         "type" : "object",
         "properties" : {
           "items" : {
             "type" : "array",
             "items" : {
-              "$ref" : "Event"
+              "$ref" : "Checkin"
             }
           },
           "nextPageToken" : {
@@ -242,35 +189,33 @@
       }
     },
     "methods" : {
-      "com.moodstream.model.EventEndpoint.removeEvent" : {
+      "com.moodstream.model.CheckinEndpoint.removeCheckin" : {
       },
-      "com.moodstream.model.EventEndpoint.insertEvent" : {
+      "com.moodstream.model.CheckinEndpoint.getCheckin" : {
+        "response" : {
+          "$ref" : "Checkin"
+        }
+      },
+      "com.moodstream.model.CheckinEndpoint.updateCheckin" : {
         "request" : {
-          "$ref" : "Event"
+          "$ref" : "Checkin"
         },
         "response" : {
-          "$ref" : "Event"
+          "$ref" : "Checkin"
         }
       },
-      "com.moodstream.model.EventEndpoint.getEvent" : {
-        "response" : {
-          "$ref" : "Event"
-        }
-      },
-      "com.moodstream.model.EventEndpoint.listEvent" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Event"
-        }
-      },
-      "com.moodstream.model.EventEndpoint.updateEvent" : {
+      "com.moodstream.model.CheckinEndpoint.insertCheckin" : {
         "request" : {
-          "$ref" : "Event"
+          "$ref" : "Checkin"
         },
         "response" : {
-          "$ref" : "Event"
+          "$ref" : "Checkin"
         }
       },
-      "com.moodstream.model.EventEndpoint.inviteFriend" : {
+      "com.moodstream.model.CheckinEndpoint.listCheckin" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Checkin"
+        }
       }
     }
   }

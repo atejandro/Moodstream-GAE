@@ -47,6 +47,21 @@
         "body" : "empty"
       }
     },
+    "photoendpoint.insertPhoto" : {
+      "path" : "photo",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.PhotoEndpoint.insertPhoto",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "photoendpoint.listPhoto" : {
       "path" : "photo",
       "httpMethod" : "GET",
@@ -70,21 +85,6 @@
           }
         },
         "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "photoendpoint.insertPhoto" : {
-      "path" : "photo",
-      "httpMethod" : "POST",
-      "scopes" : [ ],
-      "audiences" : [ ],
-      "clientIds" : [ ],
-      "rosyMethod" : "com.moodstream.model.PhotoEndpoint.insertPhoto",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -128,21 +128,6 @@
   },
   "descriptor" : {
     "schemas" : {
-      "CollectionResponse_Photo" : {
-        "id" : "CollectionResponse_Photo",
-        "type" : "object",
-        "properties" : {
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "Photo"
-            }
-          },
-          "nextPageToken" : {
-            "type" : "string"
-          }
-        }
-      },
       "Photo" : {
         "id" : "Photo",
         "type" : "object",
@@ -165,15 +150,25 @@
             "format" : "int64"
           }
         }
+      },
+      "CollectionResponse_Photo" : {
+        "id" : "CollectionResponse_Photo",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Photo"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
       }
     },
     "methods" : {
       "com.moodstream.model.PhotoEndpoint.removePhoto" : {
-      },
-      "com.moodstream.model.PhotoEndpoint.listPhoto" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Photo"
-        }
       },
       "com.moodstream.model.PhotoEndpoint.insertPhoto" : {
         "request" : {
@@ -181,6 +176,11 @@
         },
         "response" : {
           "$ref" : "Photo"
+        }
+      },
+      "com.moodstream.model.PhotoEndpoint.listPhoto" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Photo"
         }
       },
       "com.moodstream.model.PhotoEndpoint.getPhoto" : {

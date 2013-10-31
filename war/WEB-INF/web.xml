@@ -5,7 +5,7 @@
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
   <init-param>
    <param-name>services</param-name>
-   <param-value>com.moodstream.model.DeviceInfoEndpoint,com.moodstream.model.EventEndpoint,com.moodstream.model.MessageEndpoint,com.moodstream.model.PhotoEndpoint,com.moodstream.model.UserEndpoint</param-value>
+   <param-value>com.moodstream.model.CheckinEndpoint,com.moodstream.model.DeviceInfoEndpoint,com.moodstream.model.EventEndpoint,com.moodstream.model.MessageEndpoint,com.moodstream.model.PhotoEndpoint,com.moodstream.model.UserEndpoint</param-value>
   </init-param>
  </servlet>
  <servlet-mapping>
