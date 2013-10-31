@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/zKVvKKoeY7dnPktTQhXtyZ8lBtw\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/A3DJcHdMkiVg6S9kKrRLFZJVY7o\"",
  "discoveryVersion": "v1",
  "id": "checkinendpoint:v1",
  "name": "checkinendpoint",
@@ -157,6 +157,31 @@
     "$ref": "Checkin",
     "parameterName": "resource"
    },
+   "response": {
+    "$ref": "Checkin"
+   }
+  },
+  "isCheckedin": {
+   "id": "checkinendpoint.isCheckedin",
+   "path": "isCheckedin/{userId}/{eventId}",
+   "httpMethod": "POST",
+   "parameters": {
+    "eventId": {
+     "type": "string",
+     "required": true,
+     "format": "int64",
+     "location": "path"
+    },
+    "userId": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "userId",
+    "eventId"
+   ],
    "response": {
     "$ref": "Checkin"
    }

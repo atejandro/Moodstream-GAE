@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/zKVvKKoeY7dnPktTQhXtyZ8lBtw\"",
+ "etag": "\"doS0mIKix6_L3_LoT-sZZjofha4/A3DJcHdMkiVg6S9kKrRLFZJVY7o\"",
  "discoveryVersion": "v1",
  "id": "checkinendpoint:v1",
  "name": "checkinendpoint",
@@ -154,6 +154,27 @@
    },
    "parameterOrder": [
     "resource"
+   ],
+   "returns": {
+    "$ref": "Checkin"
+   }
+  },
+  "checkinendpoint.isCheckedin": {
+   "id": "checkinendpoint.isCheckedin",
+   "parameters": {
+    "eventId": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    },
+    "userId": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "userId",
+    "eventId"
    ],
    "returns": {
     "$ref": "Checkin"

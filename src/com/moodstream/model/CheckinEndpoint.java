@@ -1,7 +1,6 @@
 package com.moodstream.model;
 
 import com.moodstream.util.EMF;
-
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
@@ -142,6 +141,33 @@ public class CheckinEndpoint {
 		} finally {
 			mgr.close();
 		}
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@ApiMethod(name="isCheckedin")
+	public Checkin isCheckedin(@Named("userId")String userId,@Named("eventId")Long eventId)
+	{
+		EntityManager mgr=null;
+		List<Checkin> checkin=null;
+		
+		try {
+			
+			mgr=getEntityManager();
+			String q="select c from Checkin c where c.userId= :userId"
+					+ " and c.eventId= :eventId";
+			Query query = mgr.createQuery(q,Checkin.class);
+			query.setParameter("userId", userId);
+			query.setParameter("eventId", eventId);
+			checkin=(List<Checkin>) query.getResultList();
+			
+		}finally {
+			mgr.close();
+		}
+
+		
+		if(checkin.size()==1)return checkin.get(0);
+		else return null;
 	}
 
 	private boolean containsCheckin(Checkin checkin) {

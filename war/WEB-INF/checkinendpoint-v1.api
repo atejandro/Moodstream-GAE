@@ -120,6 +120,30 @@
       "response" : {
         "body" : "autoTemplate(backendResponse)"
       }
+    },
+    "checkinendpoint.isCheckedin" : {
+      "path" : "isCheckedin/{userId}/{eventId}",
+      "httpMethod" : "POST",
+      "scopes" : [ ],
+      "audiences" : [ ],
+      "clientIds" : [ ],
+      "rosyMethod" : "com.moodstream.model.CheckinEndpoint.isCheckedin",
+      "request" : {
+        "parameters" : {
+          "userId" : {
+            "type" : "string",
+            "required" : true
+          },
+          "eventId" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
     }
   },
   "descriptor" : {
@@ -215,6 +239,11 @@
       "com.moodstream.model.CheckinEndpoint.listCheckin" : {
         "response" : {
           "$ref" : "CollectionResponse_Checkin"
+        }
+      },
+      "com.moodstream.model.CheckinEndpoint.isCheckedin" : {
+        "response" : {
+          "$ref" : "Checkin"
         }
       }
     }
